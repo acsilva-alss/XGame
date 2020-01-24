@@ -1,17 +1,59 @@
 using System;
 using XGame.Domain.Arguments.Jogador;
+using XGame.Domain.Interfaces.Repositories;
 using XGame.Domain.Interfaces.Services;
+
 namespace XGame.Domain.Services
 {
-    class ServiceJogador: IServiceJogador
+    public class ServiceJogador: IServiceJogador
     {
-        public AdicionarJogadorResponse AdicionarJogador(AdicionarJogadorRequest request)]
+        private readonly IRepositoryJogador _repositoryJogador;
+
+        public ServiceJogador(IRepositoryJogador repositoryJogador)
         {
+            _repositoryJogador = repositoryJogador;
+        }
+        public AdicionarJogadorResponse AdicionarJogador(AdicionarJogadorRequest request)
+        {
+            Guid id = _repositoryJogador.AdicionarJogador(request);
+
+            return new AdicionarJogadorResponse(){Id = id, Message = "Operação realizada com sucesso"};
+        }
+
+        public AutenticarJogadorResponse AutenticarJogador(AutenticarJogadorRequest request)
+        {
+            if(request == null)
+            {
+                throw new Exception("AutenticarJogadorRequest é obrigatótio");
+            }
+            if(string.IsNullOrEmpty(request.Email))
+            {
+                throw new Exception("Informe um e-mail");
+            }
+            if(IsEmail(request.Email))
+            {
+                throw new Exception("Informe um e-meil válido");
+            }
+            if(string.IsNullOrEmpty(request.Senha))
+            {
+                throw new Exception("Informe um senha");
+            }
+            if(request.Senha.length <6 )
+            {
+                throw new Exception("Digite uma senha de no mínimo 6 caracteres");
+            }
+
+            var response = _repositoryJogador.AutenticarJogador(request);
+            return response;
 
         }
-        public AtenticarJogadorResponse AutenticarJogador(AutenticarJogadorRequest request)
-        {
 
+        private bool IsEmail(string email)
+        {
+            return false;
         }
+
+
     }
+
 }
