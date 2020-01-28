@@ -1,9 +1,18 @@
 using System;
+using XGame.Domain.Resouces;
 namespace  XGame.Domain.ValueObjects
 {
-    public class Email
+    
+    public class Email : Notifiable
     {
-        public string Endereco { get; set; }
+        public Email(string endereco)
+        {
+            this.Endereco = endereco;
+
+            new AddNotifications<Email>(this).IfNotEmail(x=> x.Endereco, string.Format(Message.X0_INVALIDO,"E-mail" ));
+
+        }
+        public string Endereco { get; private set; }
 
     } 
 }
