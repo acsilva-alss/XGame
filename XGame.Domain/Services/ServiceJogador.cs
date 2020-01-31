@@ -3,13 +3,19 @@ using XGame.Domain.Arguments.Jogador;
 using XGame.Domain.Interfaces.Repositories;
 using XGame.Domain.Interfaces.Services;
 using prmToolkit.NotificationPattern;
-using XGame.Domain.Resouces;
+using XGame.Domain.Entities;
+using XGame.Domain.ValueObjects;
+using XGame.Domain.Resources;
 
 namespace XGame.Domain.Services
 {
     public class ServiceJogador: Notifiable, IServiceJogador
     {
         private readonly IRepositoryJogador _repositoryJogador;
+
+        public ServiceJogador()
+        {
+        }
 
         public ServiceJogador(IRepositoryJogador repositoryJogador)
         {
@@ -34,7 +40,7 @@ namespace XGame.Domain.Services
             }
 
             var email = new Email(request.Email);
-            var jogador = new Jogador(email, resquest.Senha);
+            var jogador = new Jogador(email, request.Senha);
             AddNotifications(jogador, email);
 
             if(jogador.IsInvalid())

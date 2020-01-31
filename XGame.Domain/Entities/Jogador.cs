@@ -1,4 +1,4 @@
-using prmToolKit.NotificationPattern;
+using prmToolkit.NotificationPattern;
 using System;
 using XGame.Domain.ValueObjects;
 using XGame.Domain.Enum;
@@ -6,13 +6,17 @@ namespace  XGame.Domain.Entities
 {
     public class Jogador : Notifiable
     {
-        public Jogador(Email email, Senha senha)
+        public Jogador()
+        {
+        }
+
+        public Jogador(Email email, string senha)
         {
             this.Email = email;
             this.Senha = senha;
 
             new AddNotifications<Jogador>(this)
-                .IfNullOrInvalidLength(x=> x.senha, 6, 32, "A senha deve ter entre 6 a 32 caracteres")
+                .IfNullOrInvalidLength(x=> x.Senha, 6, 32, "A senha deve ter entre 6 a 32 caracteres")
                 ;
 
         }

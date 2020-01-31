@@ -1,5 +1,6 @@
 using System;
-using XGame.Domain.Resouces;
+using XGame.Domain.Resources;
+using prmToolkit.NotificationPattern;
 namespace  XGame.Domain.ValueObjects
 {
     
