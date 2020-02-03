@@ -179,6 +179,7 @@
     <Compile Include="Entities\JogoPlataforma.cs" />
     <Compile Include="Entities\MeusJogos.cs" />
     <Compile Include="Entities\Plataforma.cs" />
+    <Compile Include="Extensions\StringExtension.cs" />
     <Compile Include="Resources\Message.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
