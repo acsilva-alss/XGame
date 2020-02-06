@@ -38,10 +38,22 @@ namespace  XGame.Domain.Entities
             AddNotifications(nome, email);
         }
 
+        public void AlterarJogador(Nome nome, Email email)
+        {
+            this.Nome = nome;
+            this.Email = email;
+            AddNotifications(nome, email);
+        }
+
         public Guid Id { get; private set; }
         public Nome Nome { get; private set; }
         public Email Email { get; private set; }
         public string Senha { get; private set; }
         public EnumSituacaoJogador Status { get; private set; }
+
+        public override string ToString()
+        {
+            return this.Nome.PrimeiroNome + " " + this.Nome.UltimoNome;
+        }
     }
 }
