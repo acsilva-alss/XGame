@@ -9,6 +9,7 @@ namespace XGame.Domain.Interfaces.Repositories
         Jogador AdicionarJogador(Jogador jogador);
         IEnumerable<Jogador> ListarJogador();
         Jogador ObterJogadorPorId(Guid id);
+        Jogador AlterarJogador(Jogador jogador);
     }
 
 }

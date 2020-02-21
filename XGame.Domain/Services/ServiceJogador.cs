@@ -60,7 +60,7 @@ namespace XGame.Domain.Services
             var email = new Email(request.Email);
             
 
-            jogador.AlterarJogador(nome, email);
+            jogador.AlterarJogador(nome, email, jogador.Status);
 
             AddNotifications(jogador, email);
 
@@ -69,8 +69,8 @@ namespace XGame.Domain.Services
                 return null;
             }
 
-            jogador = _repositoryJogador.AutenticarJogador(jogador.Email.Endereco, jogador.Senha);
-            return (AutenticarJogadorResponse)jogador;
+            jogador = _repositoryJogador.AlterarJogador(jogador);
+            return (AlterarJogadorResponse)jogador;
         }
 
         public AutenticarJogadorResponse AutenticarJogador(AutenticarJogadorRequest request)

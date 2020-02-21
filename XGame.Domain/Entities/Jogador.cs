@@ -38,10 +38,12 @@ namespace  XGame.Domain.Entities
             AddNotifications(nome, email);
         }
 
-        public void AlterarJogador(Nome nome, Email email)
+        public void AlterarJogador(Nome nome, Email email, EnumSituacaoJogador status)
         {
             this.Nome = nome;
             this.Email = email;
+
+            new AddNotifications<Jogador>(this).IfFalse(Status == EnumSituacaoJogador.Ativo, "Só é possivel alterar jogador se eles estiver ativo");
             AddNotifications(nome, email);
         }
 
@@ -55,5 +57,7 @@ namespace  XGame.Domain.Entities
         {
             return this.Nome.PrimeiroNome + " " + this.Nome.UltimoNome;
         }
+
+       
     }
 }

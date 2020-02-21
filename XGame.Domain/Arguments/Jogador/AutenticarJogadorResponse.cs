@@ -1,3 +1,4 @@
+using System;
 using XGame.Domain.Interfaces.Arguments;
 namespace XGame.Domain.Arguments.Jogador
 {
